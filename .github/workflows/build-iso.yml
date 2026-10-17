@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: debian:bookworm
-    privileged: true
+      options: --privileged
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
