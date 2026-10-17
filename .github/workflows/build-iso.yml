@@ -8,20 +8,21 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: debian:bookworm
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Install Build Dependencies
         run: |
-          sudo apt-get update
-          sudo apt-get install -y live-build xorriso squashfs-tools git
+          apt-get update
+          apt-get install -y live-build xorriso squashfs-tools git sudo
 
       - name: Make Build Script Executable
         run: chmod +x scripts/build-iso.sh
 
       - name: Run ISO Build Script
-        run: sudo ./scripts/build-iso.sh
+        run: ./scripts/build-iso.sh
 
       - name: Upload ISO Artifact
         uses: actions/upload-artifact@v4

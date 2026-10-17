@@ -33,15 +33,19 @@ fi
 
 # 3. Configure live-build
 echo "[3/5] Configuring live-build..."
-# We use the auto/config file for the core configuration
-# lb config --binary-di صورة-iso --debian-installer live
-# To make this script autonomous, we pass common parameters
+# Force use of Debian mirrors to avoid Ubuntu host conflicts
 sudo lb config \
     --binary-images iso-hybrid \
     --debian-installer live \
     --distribution bookworm \
     --archive-areas "main contrib non-free non-free-firmware" \
-    --bootloader grub-pc \
+    --bootloader grub-pc
+
+# Manual override of sources.list inside the config directory to kill any Ubuntu references
+mkdir -p config/archives
+echo "deb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware" > config/archives/bookworm.list.chroot
+echo "deb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware" >> config/archives/bookworm.list.chroot
+echo "deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware" >> config/archives/bookworm.list.chroot \
     --mirror-bootstrap http://deb.debian.org/debian/ \
     --mirror-binary http://deb.debian.org/debian/
 
