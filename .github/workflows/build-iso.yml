@@ -8,7 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: debian:bookworm
+    container:
+      image: debian:bookworm
+    privileged: true
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
