@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=FastWare
+Comment=FastOS Software Center
+Exec=fastware
+Icon=fastware
+Terminal=false
+Type=Application
+Categories=System;Settings;
+StartupNotify=true
+GenericName=Software Center

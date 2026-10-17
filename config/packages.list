@@ -1,0 +1,23 @@
+# Core Packages
+# Base System
+coreutils
+bash
+systemd
+grub-pc-bin
+
+# Desktop Environment (XFCE)
+xfce4
+xfce4-goodies
+lightdm
+xserver-xorg
+
+# Networking & Audio
+network-manager-gnome
+pipewire
+wireplumber
+
+# System Tools
+git
+python3
+vim
+sudo

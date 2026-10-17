@@ -1,0 +1,39 @@
+# Core Packages for FastOS
+# Based on Debian Stable (Bookworm)
+
+# Base System
+coreutils
+bash
+systemd
+grub-pc-bin
+linux-image-amd64
+live-boot
+live-config
+
+# Desktop Environment (XFCE)
+xfce4
+xfce4-goodies
+lightdm
+xserver-xorg
+
+# Networking & Audio
+network-manager-gnome
+pipewire
+wireplumber
+
+# Core Apps
+firefox-esr
+thunar
+xfce4-terminal
+mousepad
+
+# FastWare dependencies
+python3
+python3-gi
+gir1.2-gtk-3.0
+python3-pip
+
+# System Tools
+git
+vim
+sudo

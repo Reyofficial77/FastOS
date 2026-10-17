@@ -1,0 +1,38 @@
+#!/bin/bash
+# Post-Install Hook to apply FastOS customizations
+# This runs inside the chroot during the live-build process.
+
+set -e
+
+echo "Applying FastOS configurations..."
+
+# 1. Install custom scripts and config files to the target system
+mkdir -p /etc/fastos/desktop
+mkdir -p /etc/fastos/branding
+mkdir -p /etc/fastos/scripts
+
+# Copy configuration files (paths relative to includes.chroot)
+cp -r /etc/fastos/desktop/* /etc/fastos/desktop/
+cp -r /etc/fastos/branding/* /etc/fastos/branding/
+
+# 2. Execute XFCE and Branding scripts
+# Note: These are executed inside the chroot, so we simulate the settings
+# In a real XFCE environment, we'd write the files to /etc/skel/.config/xfce4/
+mkdir -p /etc/skel/.config/xfce4/panel
+mkdir -p /etc/skel/.config/xfce4/xfconf
+
+# Copy our lauchers and settings scripts to a place where they can be executed later
+cp /etc/fastos/scripts/apply-branding.sh /usr/local/bin/apply-branding.sh
+chmod +x /usr/local/bin/apply-branding.sh
+
+# 3. Configure FastWare
+# Install FastWare application files to /opt/fastware
+mkdir -p /opt/fastware
+cp -r /etc/fastos/fastware/* /opt/fastware/
+
+# Install FastWare desktop entry
+mkdir -p /usr/share/applications
+cp /etc/fastos/desktop/fastware.desktop /usr/share/applications/fastware.desktop
+chmod 644 /usr/share/applications/fastware.desktop
+
+echo "FastOS customizations applied successfully."

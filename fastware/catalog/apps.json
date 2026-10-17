@@ -1,0 +1,74 @@
+[
+  {
+    "id": "visual-studio-code",
+    "name": "Visual Studio Code",
+    "category": "Development",
+    "description": "Powerful editor for professional development.",
+    "package_id": "code",
+    "source": "debian",
+    "icon": "vscode-icon"
+  },
+  {
+    "id": "firefox",
+    "name": "Firefox",
+    "category": "Internet",
+    "description": "Privacy-focused web browser.",
+    "package_id": "firefox-esr",
+    "source": "debian",
+    "icon": "firefox-icon"
+  },
+  {
+    "id": "vlc",
+    "name": "VLC Media Player",
+    "category": "Multimedia",
+    "description": "Versatile media player for all formats.",
+    "package_id": "vlc",
+    "source": "debian",
+    "icon": "vlc-icon"
+  },
+  {
+    "id": "gimp",
+    "name": "GIMP",
+    "category": "Graphics",
+    "description": "GNU Image Manipulation Program.",
+    "package_id": "gimp",
+    "source": "debian",
+    "icon": "gimp-icon"
+  },
+  {
+    "id": "libreoffice",
+    "name": "LibreOffice",
+    "category": "Office",
+    "description": "Powerful open-source office suite.",
+    "package_id": "libreoffice",
+    "source": "debian",
+    "icon": "libreoffice-icon"
+  },
+  {
+    "id": "git",
+    "name": "Git",
+    "category": "Development",
+    "description": "Distributed version control system.",
+    "package_id": "git",
+    "source": "debian",
+    "icon": "git-icon"
+  },
+  {
+    "id": "python3",
+    "name": "Python 3",
+    "category": "Development",
+    "description": "High-level programming language.",
+    "package_id": "python3",
+    "source": "debian",
+    "icon": "python-icon"
+  },
+  {
+    "id": "obs-studio",
+    "name": "OBS Studio",
+    "category": "Multimedia",
+    "description": "Open Broadcaster Software for streaming and recording.",
+    "package_id": "obs-studio",
+    "source": "debian",
+    "icon": "obs-icon"
+  }
+]
