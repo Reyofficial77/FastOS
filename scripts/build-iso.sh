@@ -41,8 +41,7 @@ sudo lb config \
     --debian-installer live \
     --distribution bookworm \
     --archive-areas "main contrib non-free non-free-firmware" \
-    --bootloader grub-pc \
-    --image-name "$ISO_NAME"
+    --bootloader grub-pc
 
 # 4. Integrate FastOS customized files
 echo "[4/5] Integrating FastOS configurations..."
@@ -54,6 +53,9 @@ echo "[4/5] Integrating FastOS configurations..."
 # 5. Build the ISO
 echo "[5/5] Building ISO... (This may take a long time)"
 sudo lb build
+
+# Rename the default output to our custom ISO name
+sudo mv live-image-amd64.hybrid.iso "$ISO_NAME.iso" 2>/dev/null || sudo mv *.iso "$ISO_NAME.iso" 2>/dev/null
 
 if [ $? -eq 0 ]; then
     echo "===================================================="
