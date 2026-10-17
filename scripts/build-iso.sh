@@ -27,46 +27,36 @@ echo "All dependencies found."
 
 # 2. Clean previous build
 echo "[2/5] Cleaning previous build artifacts..."
-if [ -d "$BUILD_DIR" ]; then
-    sudo lb clean --purge
-fi
+sudo lb clean --purge || true
 
 # 3. Configure live-build
 echo "[3/5] Configuring live-build..."
-# Force use of Debian mirrors to avoid Ubuntu host conflicts
 sudo lb config \
     --binary-images iso-hybrid \
     --debian-installer live \
     --distribution bookworm \
     --archive-areas "main contrib non-free non-free-firmware" \
-    --bootloader grub-pc
-
-# Manual override of sources.list inside the config directory to kill any Ubuntu references
-mkdir -p config/archives
-echo "deb http://deb.debian.org/debian bookworm main contrib non-free non-free-firmware" > config/archives/bookworm.list.chroot
-echo "deb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware" >> config/archives/bookworm.list.chroot
-echo "deb http://deb.debian.org/debian bookworm-updates main contrib non-free non-free-firmware" >> config/archives/bookworm.list.chroot \
-    --mirror-bootstrap http://deb.debian.org/debian/ \
-    --mirror-binary http://deb.debian.org/debian/
+    --bootloader grub-pc \
+    --mirror-bootstrap "http://deb.debian.org/debian/" \
+    --mirror-binary "http://deb.debian.org/debian/"
 
 # 4. Integrate FastOS customized files
 echo "[4/5] Integrating FastOS configurations..."
-# Copy package lists, branding, and apps into the build chroot
-# In a real live-build setup, these would be in config/package-lists/ and config/includes.chroot/
-# Here we ensure the scripts are ready to be picked up by the build process.
-# (The actual integration happens via the directory structure mapped in config/live-build/)
 
 # 5. Build the ISO
 echo "[5/5] Building ISO... (This may take a long time)"
 sudo lb build
 
 # Rename the default output to our custom ISO name
-sudo mv live-image-amd64.hybrid.iso "$ISO_NAME.iso" 2>/dev/null || sudo mv *.iso "$ISO_NAME.iso" 2>/dev/null
+if [ -f "live-image-amd64.hybrid.iso" ]; then
+    sudo mv "live-image-amd64.hybrid.iso" "$ISO_NAME.iso"
+fi
 
-if [ $? -eq 0 ]; then
+# Verify ISO creation
+if ls *.iso 1> /dev/null 2>&1; then
     echo "===================================================="
     echo "SUCCESS: FastOS ISO has been created!"
-    echo "File: $ISO_NAME.iso"
+    echo "File: $(ls *.iso | head -n 1)"
     echo "===================================================="
 else
     echo "===================================================="
