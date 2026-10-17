@@ -43,7 +43,8 @@ sudo lb config \
     --archive-areas "main contrib non-free non-free-firmware" \
     --bootloader grub-pc \
     --mirror-bootstrap http://deb.debian.org/debian/ \
-    --mirror-binary http://deb.debian.org/debian/
+    --mirror-binary http://deb.debian.org/debian/ \
+    --mirror-security http://security.debian.org/debian-security
 
 # 4. Integrate FastOS customized files
 echo "[4/5] Integrating FastOS configurations..."
