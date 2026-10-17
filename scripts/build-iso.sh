@@ -16,7 +16,7 @@ echo "===================================================="
 
 # 1. Check for dependencies
 echo "[1/5] Checking dependencies..."
-DEPENDENCIES=("live-build" "xorriso" "squashfs-tools" "git")
+DEPENDENCIES=("lb" "xorriso" "mksquashfs" "git")
 for dep in "${DEPENDENCIES[@]}"; do
     if ! command -v "$dep" &> /dev/null; then
         echo "Error: Dependency '$dep' is not installed. Please install it first."
